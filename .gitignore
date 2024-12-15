@@ -1,0 +1,6 @@
+**.sln
+**.vs
+**.vcxproj
+**.vcxproj.user
+bin-int
+bin
