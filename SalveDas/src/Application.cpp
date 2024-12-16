@@ -11,7 +11,7 @@ namespace SalveDas
 	}
 	void Application::RunApp()
 	{
-		while (!window.IsOpen())
+		while (window.IsOpen() != -2)
 		{
 			window.RenderFrame();
 

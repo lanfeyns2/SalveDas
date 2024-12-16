@@ -35,6 +35,6 @@ namespace SalveDas
 	}
 	int Window::IsOpen()
 	{
-		return glfwWindowShouldClose(m_window);
+		return ~glfwWindowShouldClose(m_window);
 	}
 }
