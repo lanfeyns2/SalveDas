@@ -3,6 +3,7 @@
 namespace SalveDas
 {
 	Application::Application()
+		: window()
 	{
 	}
 	Application::~Application()
@@ -10,9 +11,11 @@ namespace SalveDas
 	}
 	void Application::RunApp()
 	{
-		while (true)
+		while (!window.IsOpen())
 		{
-			engineStack.RenderStack();
+			window.RenderFrame();
+
+			window.PollEvents();
 		}
 	}
 }

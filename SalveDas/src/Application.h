@@ -1,6 +1,7 @@
 #pragma once
 #include "LayerStack.h"
 #include "Core.h"
+#include "src/Window.h"
 
 namespace SalveDas
 {
@@ -13,6 +14,7 @@ namespace SalveDas
 		SALVE_DAS_API void RunApp();
 
 		SalveDas::LayerStack engineStack;
+		Window window;
 	};
 }
 

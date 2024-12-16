@@ -13,11 +13,11 @@ project "SalveDasEditor"
    targetdir "%{wks.location}/bin/%{prj.name}/%{cfg.buildcfg}/%{cfg.platform}/"
    objdir "%{wks.location}/bin-int/%{prj.name}/%{cfg.buildcfg}/%{cfg.platform}/"
 
-   includedirs {"%{wks.location}/SalveDas"}
+   includedirs {"%{wks.location}/SalveDas","%{wks.location}/glfw/"}
 
    links {"SalveDas"}
 
-   postbuildcommands {"{COPYFILE} %{wks.location}/bin/SalveDas/%{cfg.buildcfg}/%{cfg.platform}/SalveDas.dll %{wks.location}/bin/SalveDasEditor/%{cfg.buildcfg}/%{cfg.platform}/SalveDas.dll"}
+   postbuildcommands {"{COPYFILE} %{wks.location}/bin/SalveDas/%{cfg.buildcfg}/%{cfg.platform}/SalveDas.dll %{wks.location}/bin/SalveDasEditor/%{cfg.buildcfg}/%{cfg.platform}/SalveDas.dll","{COPYFILE} %{wks.location}/bin/glfw/%{cfg.buildcfg}/%{cfg.platform}/glfw.dll %{wks.location}/bin/SalveDasEditor/%{cfg.buildcfg}/%{cfg.platform}/glfw.dll"}
 
    filter { "configurations:Debug" }
       defines { "DEBUG" }
@@ -26,6 +26,10 @@ project "SalveDasEditor"
    filter { "configurations:Release" }
       defines { "NDEBUG" }
       optimize "On"
+   filter { "system:Windows" }
+      includedirs {"%{wks.location}/vendor/windows/include"}
+      libdirs {"%{wks.location}/vendor/windows/lib"}
+      links {"glfw3.lib"}
 
 project "SalveDas"
    kind "SharedLib"
@@ -37,6 +41,9 @@ project "SalveDas"
 
    defines {"SD_BUILD_DLL"}
 
+   includedirs {"%{wks.location}/glfw/"}
+   links {"glfw"}
+
    filter { "configurations:Debug" }
       defines { "DEBUG" }
       symbols "On"
@@ -44,3 +51,28 @@ project "SalveDas"
    filter { "configurations:Release" }
       defines { "NDEBUG" }
       optimize "On"
+   filter { "system:Windows" }
+      includedirs {"%{wks.location}/vendor/windows/include"}
+      libdirs {"%{wks.location}/vendor/windows/lib"}
+
+project "glfw"
+   kind "SharedLib"
+   language "C++"
+   location "glfw/"
+   files { "%{prj.name}/**.h", "%{prj.name}/**.cpp" }
+   targetdir "%{wks.location}/bin/%{prj.name}/%{cfg.buildcfg}/%{cfg.platform}/"
+   objdir "%{wks.location}/bin-int/%{prj.name}/%{cfg.buildcfg}/%{cfg.platform}/"
+
+   defines {"SD_GL_BUILD_DLL"}
+
+   filter { "configurations:Debug" }
+      defines { "DEBUG" }
+      symbols "On"
+
+   filter { "configurations:Release" }
+      defines { "NDEBUG" }
+      optimize "On"
+   filter { "system:Windows" }
+      includedirs {"%{wks.location}/vendor/windows/include"}
+      libdirs {"%{wks.location}/vendor/windows/lib"}
+      links {"glfw3.lib","opengl32.lib"}
