@@ -13,7 +13,8 @@ project "SalveDasEditor"
    targetdir "%{wks.location}/bin/%{prj.name}/%{cfg.buildcfg}/%{cfg.platform}/"
    objdir "%{wks.location}/bin-int/%{prj.name}/%{cfg.buildcfg}/%{cfg.platform}/"
 
-   includedirs {"%{wks.location}/SalveDas","%{wks.location}/glfw/"}
+   includedirs {"%{wks.location}/SalveDas","%{wks.location}/glfw/","%{wks.location}/vendor/universal/include"}
+   libdirs {"%{wks.location}/vendor/universal/lib"}
 
    links {"SalveDas"}
 
@@ -41,7 +42,8 @@ project "SalveDas"
 
    defines {"SD_BUILD_DLL"}
 
-   includedirs {"%{wks.location}/glfw/"}
+   includedirs {"%{wks.location}/glfw/","%{wks.location}/vendor/universal/include"}
+   libdirs {"%{wks.location}/vendor/universal/lib"}
    links {"glfw"}
 
    filter { "configurations:Debug" }
@@ -64,6 +66,9 @@ project "glfw"
    objdir "%{wks.location}/bin-int/%{prj.name}/%{cfg.buildcfg}/%{cfg.platform}/"
 
    defines {"SD_GL_BUILD_DLL"}
+
+   includedirs {"%{wks.location}/vendor/universal/include"}
+   libdirs {"%{wks.location}/vendor/universal/lib"}
 
    filter { "configurations:Debug" }
       defines { "DEBUG" }

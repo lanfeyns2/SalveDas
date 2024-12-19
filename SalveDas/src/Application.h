@@ -3,6 +3,8 @@
 #include "Core.h"
 #include "src/Window.h"
 #include <iostream>
+#include <spdlog/spdlog.h>
+#include <spdlog/sinks/stdout_color_sinks.h>
 
 namespace SalveDas
 {
