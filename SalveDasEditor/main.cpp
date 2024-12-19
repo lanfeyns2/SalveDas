@@ -4,6 +4,5 @@ int main()
 {
 	SalveDas::Application app;
 
-
 	app.RunApp();
 }

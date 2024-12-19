@@ -2,7 +2,6 @@
 #include "LayerStack.h"
 #include "Core.h"
 #include "src/Window.h"
-#include "Logging.h"
 #include <iostream>
 
 namespace SalveDas
