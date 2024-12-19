@@ -5,6 +5,9 @@ workspace "SalveDas"
    filter "system:Windows"
       defines {"SD_WINDOWS"}
 
+      
+   buildoptions {"/utf-8"}
+
 project "SalveDasEditor"
    kind "ConsoleApp"
    language "C++"
